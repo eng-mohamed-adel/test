@@ -8,6 +8,7 @@
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./fontawesome.min.css">
 
     <style>
         /* === Base Styles === */
@@ -26,6 +27,37 @@
           display: flex;
           flex-direction: column;
         }
+        .wrapper {
+          position: relative;
+          top: 40px;
+          color: #fff;
+  /*This part is important for centering*/
+  display: grid;
+  place-items: center;
+}
+
+.typing-demo {
+  width: 19ch;
+  animation: typing 2s steps(19), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+    
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
 
         /* Carousel wrapper */
         .carousel {
@@ -280,6 +312,11 @@ footer .wave#wave4 {
     </style>
 </head>
 <body>
+  <div class="wrapper">
+    <div class="typing-demo">
+      ZG Company <span class="fa-fade" style="--fa-animation-duration: 2s; --fa-fade-opacity: 0.6;">Projects</span>.
+    </div>
+</div>
   <!-- Carousel -->
   <div class="carousel">
     <div class="carousel-item">
@@ -330,6 +367,7 @@ footer .wave#wave4 {
   <!-- jQuery & Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./all.min.js"></script>
   <script>
     $(document).ready(function () {
       const $carousel = $(".carousel");
