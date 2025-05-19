@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Glowing Card Carousel — Responsive</title>
+    <!-- ✨ NEW: Ensure proper scaling on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+        /* === Base Styles === */
+        :root {
+          /* Control card size from one place */
+          --card-max: 400px;
+        }
+
+        body {
+          margin: 0;
+          padding: 0;
+          background: #021514;
+          overflow-x: hidden; /* Prevent horizontal scrolling */
+          font-family: "Roboto", sans-serif;
+        }
+
+        /* Carousel wrapper */
+        .carousel {
+          height: 60vh;               /* Flexible height */
+          max-height: 600px;          /* Prevent stretching on very tall screens */
+          perspective: 450px;
+          margin-top: 5vh;            /* Scales with viewport */
+        }
+
+        /* Individual slide */
+        .carousel .carousel-item {
+          width: 28vw;                /* Relative sizing */
+          height: 28vw;
+          max-width: var(--card-max);
+          max-height: var(--card-max);
+          box-shadow: 0 0 40px #61dafb, 0 0 40px #61dafb, 0 0 40px #61dafb;
+          animation: glow 10s infinite alternate;
+          border-radius: 15px;
+        }
+
+        /* Glowing effect */
+        @keyframes glow {
+          to {
+            box-shadow: 0 0 50px #61dafb, 0 0 50px #61dafb, 0 0 50px #61dafb;
+          }
+        }
+
+        /* Card container */
+        .box {
+          border-radius: 10px;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+          width: 100%;
+          height: 100%;
+        }
+
+        .box img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;          /* Keep aspect ratio, crop if needed */
+          border-radius: 10px;
+          display: block;
+          transition: transform 0.5s;
+        }
+
+        /* Overlay */
+        .overlay {
+          width: 100%;
+          height: 0;
+          background: linear-gradient(transparent, #1c1c1c 58%);
+          border-radius: 10px;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding: 0 40px;
+          text-align: center;
+          font-size: 1rem;
+          transition: height 0.5s ease;
+        }
+
+        .overlay h3 {
+          font-weight: 500;
+          margin-bottom: 5px;
+          margin-top: 65%;
+          font-family: "Bebas Neue", sans-serif;
+          font-size: 2rem;
+          letter-spacing: 2px;
+          color: #fff;
+        }
+
+        .overlay a {
+          margin-top: 10px;
+          color: #262626;
+          text-decoration: none;
+          font-size: 0.9rem;
+          background: #fff;
+          border-radius: 50px;
+          text-align: center;
+          padding: 6px 20px;
+          margin-bottom: 30px;
+        }
+
+        /* Hover interactions */
+        .box:hover img {
+          transform: scale(1.05);
+        }
+
+        .box:hover .overlay {
+          height: 100%;
+        }
+
+        /* === Responsive Tweaks === */
+        @media (max-width: 992px) {
+          /* Medium screens (tablets) */
+          .carousel .carousel-item {
+            width: 40vw;
+            height: 40vw;
+          }
+        }
+
+        @media (max-width: 600px) {
+          /* Small screens (phones) */
+          .carousel {
+            height: 75vh;
+            margin-top: 8vh;
+          }
+
+          .carousel .carousel-item {
+            width: 80vw;   /* Nearly full‑width on phones */
+            height: 80vw;
+          }
+
+          .overlay {
+            padding: 0 20px;
+            font-size: 0.8rem;
+          }
+
+          .overlay h3 {
+            margin-top: 50%;
+            font-size: 1.5rem;
+          }
+        }
+    </style>
+</head>
+<body>
+  <!-- Carousel -->
+  <div class="carousel">
+    <div class="carousel-item">
+      <div class="box">
+        <img src="./Hand-drawn-pink-flowers-on-transparent-background-PNG.png" alt="Pink Flowers" />
+        <div class="overlay">
+          <h3>Mountaineering</h3>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.<br />Neque modi
+            explicabo libero ea nam. Quod.
+          </p>
+          <a href="#">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item"></div>
+    <div class="carousel-item"></div>
+    <div class="carousel-item"></div>
+    <div class="carousel-item"></div>
+  </div>
+
+  <!-- jQuery & Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      const $carousel = $(".carousel");
+      $carousel.carousel({ padding: 200 });
+
+      // Auto‑play helper
+      (function autoplay() {
+        $carousel.carousel("next");
+        setTimeout(autoplay, 6000);
+      })();
+    });
+  </script>
+</body>
+</html>
